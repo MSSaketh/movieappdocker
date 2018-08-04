@@ -2,6 +2,8 @@ package com.stackroute.movieservice.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,12 @@ import com.stackroute.movieservice.services.MovieService;
 @RequestMapping(value = "/api/v1")
 public class MovieController {
 
-	 MovieService movieservice;
+	Logger logger = LoggerFactory.getLogger("MovieController");
+	MovieService movieservice;
 
-//	public MovieController() {
-//		// TODO Auto-generated constructor stub
-//	}
+	// public MovieController() {
+	// // TODO Auto-generated constructor stub
+	// }
 
 	@Autowired
 	public MovieController(MovieService movieservice) {
@@ -47,6 +50,12 @@ public class MovieController {
 	@RequestMapping(value = "/movies", method = RequestMethod.GET, produces = { "application/json" })
 	public ResponseEntity<List<Movie>> allMoviesHandler() {
 		List<Movie> movielist = movieservice.getAllMovies();
+
+		logger.debug("debug13");
+		logger.error("error13");
+		logger.info("info13");
+		logger.warn("warn12");
+		logger.trace("trace12");
 		return new ResponseEntity<List<Movie>>(movielist, HttpStatus.OK);
 	}
 
